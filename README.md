@@ -1,2 +1,2 @@
-# Front-end-recruitment-of-Lanshan-Team--Initial-assessment
+# 蓝山工作室前端招新初期考核项目
 天气预报移动端，折线图完成的不是很好
