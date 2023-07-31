@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./search.css">
+</head>
+
+<body>
+    <div class="search">
+        <input type="text" placeholder="搜索地区">
+        <button class="text-color">搜索</button>
+    </div>
+    <div class="one">
+        <span>当前定位</span>
+        <div class="label">重庆</div>
+    </div>
+    <div class="two one">
+        <span>热门城市</span>
+        <div class="box">
+            <span class="label">北京</span>
+            <span class="label">上海</span>
+            <span class="label">广州</span>
+            <span class="label">深圳</span>
+            <span class="label">郑州</span>
+            <span class="label">西安</span>
+            <span class="label">南京</span>
+            <span class="label">杭州</span>
+            <span class="label">武汉</span>
+            <span class="label">成都</span>
+            <span class="label">沈阳</span>
+            <span class="label">天津</span>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    document.querySelector('.search button').addEventListener('click',()=>{
+        const city = document.querySelector('input').value
+        window.location.href = `./home.html?city=${city}`
+        window.localStorage.setItem('city',city)
+    })
+    const label = document.querySelectorAll('.label')
+    for(let i = 0 ; i<label.length ; i++){
+        label[i].addEventListener('click',()=>{
+            const text = label[i].innerHTML
+            document.querySelector('input').value = text
+        })
+    }
+</script>
+</html>

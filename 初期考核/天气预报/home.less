@@ -1,0 +1,165 @@
+.box {
+    width: 100vw;
+    height: 100vh;
+    background-color: #F4F4F4;
+
+    .head {
+        width: 100%;
+        height: 20.5vh;
+        background-color: #97D0D5;
+        position: relative;
+
+        .weather {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            color: #fff;
+            flex-direction: column;
+            align-items: center;
+            top: 20%;
+
+            .one {
+                font-size: 32px;
+            }
+
+            .two,
+            .three {
+                font-size: 13px;
+                margin-bottom: 2px;
+            }
+        }
+    }
+
+    .body {
+        height: 56vh;
+        width: 100vw;
+
+        .top {
+            width: 100%;
+            height: 13%;
+            background-color: #fff;
+            position: relative;
+            padding: 7px;
+        }
+        .left{
+            position: relative;
+            border-right: 1px solid #b6b6b6;
+            // padding-right: 8px;
+        }
+        .right{
+            position: relative;
+            margin-left: 8px;
+
+        }
+        .weak {
+            width: 100%;
+            height: 60%;
+            background-color: #fff;
+            .son{
+                width: 100px;
+                position: relative;
+                height: 100%;
+                
+            }
+            .num {
+                height: 70px;
+                    position: relative;
+                    width: 100%;
+                                    
+                .top1{
+                    position: absolute;
+                    bottom: 50%;
+                }
+                .dian1{
+                    width: 6px;
+                    height: 6px;
+                    background-color: rgb(255, 145, 0);
+                    position: absolute;
+                    bottom: -6px;
+                    right: 50%;
+                    border-radius: 50%;
+                }
+                .bottom1{
+                    position: absolute;
+
+                    bottom: 0%;
+                }
+                .dian2{
+                    width: 6px;
+                    height: 6px;
+                    background-color: aqua;
+                    position: absolute;
+                    top: -6px;
+                    right: 50%;
+                    border-radius: 50%;
+
+                }
+            }
+        }
+
+        .hour {
+            width: 100%;
+            height: 17%;
+            background-color: #fff;
+            padding: 5px;
+            font-size: 15px;
+
+            .box {
+                width: 70px;
+                background-color: #fff;
+                height: 100%;
+
+                .icon {
+                    width: 37px;
+                    height: 37px;
+                }
+            }
+        }
+
+        .life {
+            width: 100%;
+            height: 35%;
+            background-color: #fff;
+            flex-wrap: wrap;
+
+            .box1 {
+                width: 100%;
+                border-right: 1px solid #cfcfcf;
+                border-bottom: 1px solid #cfcfcf;
+                padding-top: 10px;
+                .iconlife{
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}
+.foot{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 100px;
+}
+.foottext{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%);
+}
+.head .text{
+    position: absolute;
+    width: 100vw;
+    text-align: center;
+    top: 73%;
+    left: 50%;
+    transform: translate(-50%);
+    color: #fff;
+}
+.iconweak{
+    width: 37px;
+    height: 37px;
+}
+.date{
+    width: 110px;
+}

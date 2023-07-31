@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./home.css">
+    <script src="https://at.alicdn.com/t/c/font_4189391_7h7j1r6q0zh.js"></script>
+    <!-- <style type="text/css">
+        .icon {
+           width: 3em; height: 3em;
+           vertical-align: -0.15em;
+           fill: currentColor;
+           overflow: hidden;
+        }
+    </style> -->
+</head>
+
+<body>
+    <div class="box">
+        <div class="head">
+            <div class="weather flex">
+                <span class="one">&nbsp;25°</span>
+                <div class="two">阴</div>
+                <div class="three">湿度 97%</div>
+            </div>
+            <span class="text">123</span>
+        </div>
+        <div class="body">
+            <div class="top flex">
+            </div>
+            <div class="hour mtop-5 flex nowrap o-scroll">
+            </div>
+            <div class="weak mtop-5 flex nowrap o-scroll">
+            </div>
+            <div class="life mtop-5 grid grid1 o-scroll">
+
+            </div>
+        </div>
+        <div class="foot">
+            <span class="foottext small-size text-color">数据来源天气网</span>
+        </div>
+
+    </div>
+</body>
+<script>
+    const city = window.localStorage.getItem('city') === null ? '重庆' : window.localStorage.getItem('city')
+    console.log(city);
+    function ajax(method, url, data, success) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url, false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    success(xhr.responseText);
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+            // success(xhr.responseText);
+        };
+        xhr.send(data);
+    }
+
+    var content = ajax("GET",
+        `https://v0.yiketianqi.com/api?unescape=1&version=v62&appid=83986934&appsecret=LeC4URB2&city=${city}`,
+        "",
+        function (responseText) {
+            console.log(JSON.parse(responseText));
+            setData(JSON.parse(responseText))
+        }
+    )
+
+    function setData(text) {
+        document.querySelector('.weather .one').innerHTML = text.tem
+        document.querySelector('.weather .two').innerHTML = text.wea
+        document.querySelector('.weather .three').innerHTML = '湿度' + ' ' + text.tem + '%'
+        document.querySelector('.text').innerHTML = text.air_tips
+        const hours = text.hours
+        const zhishu = text.zhishu
+        console.log(zhishu);
+        hours.forEach(item => {
+            const element = document.querySelector('.body .hour')
+            const element1 = document.createElement('div')
+            element1.className = 'box flex flex-center-i flex-c flex-center'
+            element1.innerHTML = `<div class="box flex flex-center-i flex-c flex-center"><span class="time text-color">${item.hours}</span><svg class="icon" aria-hidden="true"><use xlink: href="#icon-${item.wea_img}"></use></svg><span class="wendu">${item.tem}°</span></div>`
+            element.appendChild(element1)
+        });
+        for (key in zhishu) {
+            if (zhishu[key].level === '') {
+
+            } else {
+                const name = {
+                    chuanyi: '穿衣',
+                    daisan: '雨伞',
+                    ganmao: '感冒',
+                    chenlian: '晨练',
+                    ziwaixian: '紫外线',
+                    liangshai: '晾晒',
+                    kaiche: '开车',
+                    xiche: '洗车',
+                    lvyou: '旅游',
+                    diaoyu: '钓鱼',
+                }
+                console.log(key);
+                const element = document.querySelector('.body .life')
+                const element1 = document.createElement('div')
+                element1.className = 'box1 flex flex-c flex-center-i'
+                element1.innerHTML = `<svg class="icon iconlife" aria-hidden="true">
+                        <use xlink:href="#icon-${key}"></use>
+                    </svg>
+                    <span class="one">${zhishu[key].level}</span>
+                    <span class="two text-color">${name[key]}</span>`
+                element.appendChild(element1)
+            }
+
+        };
+
+    }
+
+    var content = ajax("GET",
+        `https://v0.yiketianqi.com/api?unescape=1&version=v9&appid=83986934&appsecret=LeC4URB2https://v0.yiketianqi.com/api?unescape=1&version=v9&appid=83986934&appsecret=LeC4URB2&city=${city}`,
+        "",
+        function (responseText) {
+            console.log(JSON.parse(responseText));
+            setData_weak(JSON.parse(responseText))
+        }
+    )
+
+    function setData_weak(text) {
+        console.log(text.data);
+        text.data.forEach(item => {
+            const element = document.querySelector('.body .weak')
+            const element1 = document.createElement('div')
+            element1.className = 'son flex flex-c flex-center flex-center-i'
+            element1.innerHTML = `<span class="text-color">${item.week}</span>
+                    <span class="text-color date">${item.date}</span>
+                    <span class="mtop-5">${item.wea_day}</span>
+                    <div><svg class="iconweak" aria-hidden="true">
+                        <use xlink:href="#icon-${item.wea_img}"></use>
+                    </svg></div>
+                    
+                    <div class="num flex flex-c flex-center flex-center-i">
+                        <span class="number top1">${item.tem1}°
+                            <div class='dian1'></div></span>
+                        <span class="number bottom1">${item.tem2}°
+                            <div class='dian2'></div></span>
+                    </div>
+                    <div><svg class="iconweak" aria-hidden="true">
+                        <use xlink:href="#icon-${item.wea_img}"></use>
+                    </svg></div>
+                    
+                    <span class="mtop-5">${item.wea_night}</span>
+
+                    <span class="text-color mtop-5 small-size">${item.win[1]}</span>
+                    <span class="text-color small-size">${item.win_speed}</span>`
+            element.appendChild(element1)
+
+        })
+        const data1 = text.data[0]
+        const data2 = text.data[1]
+        const element = document.querySelector('.body .top')
+        const element1 = document.createElement('div')
+        element1.className = 'left flex-1'
+        element1.innerHTML = `<span class="lt small-size">今天</span>
+                    <span class="rt small-size">${data1.tem1}/${data1.tem2}°</span>
+                    <span class="lb small-size">${data1.wea}</span>
+                    <svg class="icon rb" aria-hidden="true">
+                        <use xlink:href="#icon-${data1.wea_img}"></use>
+                    </svg>`
+        element.appendChild(element1)
+        const element2 = document.createElement('div')
+        element2.className = 'right flex-1'
+        element2.innerHTML = `<span class="lt small-size">明天</span>
+                    <span class="rt small-size">${data2.tem1}/${data2.tem2}°</span>
+                    <span class="lb small-size">${data2.wea}</span>
+                    <svg class="icon rb" aria-hidden="true">
+                        <use xlink:href="#icon-${data2.wea_img}"></use>
+                    </svg>`
+        element.appendChild(element2)
+
+    }
+
+
+    document.querySelectorAll('.weak .bottom1').forEach(item => {
+        const num = Number(item.innerText.slice(0, 2)) % 15
+        item.style.bottom = 1 * num + 'px'
+    })
+
+    const top1 = document.querySelectorAll('.weak .top1')
+    const bottom = document.querySelectorAll('.weak .bottom1')
+
+    for (let i = 0; i < top1.length; i++) {
+        // console.log(bottom[i].style.bottom.slice(0,-2));
+        const a = Number(top1[i].innerText.slice(0, 2)) - Number(bottom[i].innerText.slice(0, 2));
+        top1[i].style.marginBottom = Number(bottom[i].style.bottom.slice(0, -2)) + a + 5 + 'px'
+    }
+
+    const point1 = document.querySelectorAll('.dian1')
+    const point2 = document.querySelectorAll('.dian2')
+
+    function drawLine(startObj, endObj,color) {
+
+        const rect1 = startObj.getBoundingClientRect()
+        const rect2 = endObj.getBoundingClientRect()
+
+        console.log(rect1);
+        //起点元素中心坐标
+        var y_start = rect1.top + rect1.width / 2
+        var x_start = rect1.left + rect1.width / 2
+
+        //终点元素中心坐标
+        var y_end = rect2.top + rect2.width / 2
+        var x_end = rect2.left + rect1.width / 2
+
+        //用勾股定律计算出斜边长度及其夹角（即连线的旋转角度）
+        var lx = x_end - x_start;
+        var ly = y_end - y_start;
+        //计算连线长度
+        var length = Math.sqrt(lx * lx + ly * ly);
+        //弧度值转换为角度值
+        var c = 360 * Math.atan2(ly, lx) / (2 * Math.PI);
+
+        //连线中心坐标
+        var midX = (x_end + x_start) / 2;
+        var midY = (y_end + y_start) / 2
+        var deg = c <= -90 ? (360 + c) : c;  //负角转换为正角
+
+        return `<div class='line' style='top:${midY}px;left:${midX - length / 2}px;width:${length}px;transform:rotate(${deg}deg);border:1px solid ${color};position:absolute;height:1px'></div>`
+    }
+
+
+    for (let i = 0; i < point1.length - 1; i++) {
+        const div = document.createElement('div')
+        div.style.width = 100 + 'px'
+        div.style.height = 100 + 'px'
+        div.innerHTML = drawLine(point1[i], point1[i + 1],'#FF9100')
+        document.querySelector('.body .weak').appendChild(div)
+    }
+
+    for (let i = 0; i < point1.length - 1; i++) {
+        const div = document.createElement('div')
+        div.style.width = 100 + 'px'
+        div.style.height = 100 + 'px'
+        div.innerHTML = drawLine(point2[i], point2[i + 1],'#00FFFF')
+        document.querySelector('.body .weak').appendChild(div)
+    }
+
+    // document.querySelector('body').addEventListener('touchstart',(q)=>{
+    //     var x=q.changedTouches[0].clientX
+    //     console.log(q.changedTouches[0].clientX);
+    //     document.querySelector('body').addEventListener('touchmove',(e)=>{
+    //         console.log(e.changedTouches[0].clientX-x);
+    //     })
+    // })
+
+</script>
+
+</html>

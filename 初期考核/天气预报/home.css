@@ -1,0 +1,148 @@
+.box {
+  width: 100vw;
+  height: 100vh;
+  background-color: #F4F4F4;
+}
+.box .head {
+  width: 100%;
+  height: 20.5vh;
+  background-color: #97D0D5;
+  position: relative;
+}
+.box .head .weather {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  color: #fff;
+  flex-direction: column;
+  align-items: center;
+  top: 20%;
+}
+.box .head .weather .one {
+  font-size: 32px;
+}
+.box .head .weather .two,
+.box .head .weather .three {
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+.box .body {
+  height: 56vh;
+  width: 100vw;
+}
+.box .body .top {
+  width: 100%;
+  height: 13%;
+  background-color: #fff;
+  position: relative;
+  padding: 7px;
+}
+.box .body .left {
+  position: relative;
+  border-right: 1px solid #b6b6b6;
+}
+.box .body .right {
+  position: relative;
+  margin-left: 8px;
+}
+.box .body .weak {
+  width: 100%;
+  height: 60%;
+  background-color: #fff;
+}
+.box .body .weak .son {
+  width: 100px;
+  position: relative;
+  height: 100%;
+}
+.box .body .weak .num {
+  height: 70px;
+  position: relative;
+  width: 100%;
+}
+.box .body .weak .num .top1 {
+  position: absolute;
+  bottom: 50%;
+}
+.box .body .weak .num .dian1 {
+  width: 6px;
+  height: 6px;
+  background-color: #ff9100;
+  position: absolute;
+  bottom: -6px;
+  right: 50%;
+  border-radius: 50%;
+}
+.box .body .weak .num .bottom1 {
+  position: absolute;
+  bottom: 0%;
+}
+.box .body .weak .num .dian2 {
+  width: 6px;
+  height: 6px;
+  background-color: aqua;
+  position: absolute;
+  top: -6px;
+  right: 50%;
+  border-radius: 50%;
+}
+.box .body .hour {
+  width: 100%;
+  height: 17%;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 15px;
+}
+.box .body .hour .box {
+  width: 70px;
+  background-color: #fff;
+  height: 100%;
+}
+.box .body .hour .box .icon {
+  width: 37px;
+  height: 37px;
+}
+.box .body .life {
+  width: 100%;
+  height: 35%;
+  background-color: #fff;
+  flex-wrap: wrap;
+}
+.box .body .life .box1 {
+  width: 100%;
+  border-right: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+  padding-top: 10px;
+}
+.box .body .life .box1 .iconlife {
+  width: 20px;
+  height: 20px;
+}
+.foot {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 100px;
+}
+.foottext {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%);
+}
+.head .text {
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%);
+  color: #fff;
+}
+.iconweak {
+  width: 37px;
+  height: 37px;
+}
+.date {
+  width: 110px;
+}
